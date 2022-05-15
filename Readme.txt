@@ -9,5 +9,6 @@ After installing Python, you must install the additional module pyperclip. To in
 
 pip install pyperclip
 
-New from previous version (1.1.0):
+New from previous version (1.1.0)
 - buttons replaced by menu (Alt-F to open)
+- new and improved algorithm

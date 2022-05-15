@@ -114,35 +114,37 @@ textbox.bind("<Button-3>", context_menu)
 c=9.84
 rc=28.44
 bc=23.27
-gc=36.57
+gc=42.5
 blue=0
 red=0
 green=0
 lettern=1
 numbersum=0
+redsum=0
+greensum=0
+bluesum=0
+redlength=0
+greenlength=0
+bluelength=0
 def sine(value, letternumber):
     global blue
     blue=blue+value
-    global lettern
-    lettern=letternumber
-    global numbersum
-    numbersum=numbersum+lettern
+    global bluelength
+    bluelength=bluelength+1
 
 def triangle (value, letternumber):
     global red
     red=red+value
-    global lettern
-    lettern=letternumber
-    global numbersum
-    numbersum=numbersum+lettern    
+    global redlength
+    redlength=redlength+1
 
 def square (value, letternumber):
     global green
     green=green+value
-    global lettern
-    lettern=letternumber
-    global numbersum
-    numbersum=numbersum+lettern
+    global greenlength
+    greenlength= greenlength+1
+
+    
 def rgb_hack(rgb):
     return "#%02x%02x%02x" % rgb
 def GenerateColor():
@@ -153,10 +155,16 @@ def GenerateColor():
     global green
     green=0
     global numbersum
+    global redsum
+    global redlength
+    global greensum
+    global greenlength
+    global bluesum
+    global bluelength
     numbersum=0
-    text=textbox.get(1.0,2000.0)
+    text=textbox.get(1.0,END)
     textvalidate=0
-    length=len(text)
+    length=len(text)-1
     for letters in range (0,length):
         char=text[letters]
         asciicode=ord(char)
@@ -164,7 +172,7 @@ def GenerateColor():
             textvalidate=1
     if textvalidate==0:
         text="Hello"
-    length=len(text)
+    length=len(text)-1
     for letters in range (0,length):
         char=text[letters]
         asciicode=ord(char)
@@ -172,86 +180,92 @@ def GenerateColor():
             if char=="A" or char=="a":
                 triangle(int(1*rc), 1)
             if char=="B" or char=="b":
-                sine (int(1*bc), 2)
+                sine (int(1*bc), 1)
             if char=="C" or char=="c":
-                sine(int(2*bc), 3)
+                sine(int(2*bc), 2)
             if char=="D" or char=="d":
-                sine(int(3*bc),4)
+                sine(int(3*bc),3)
             if char=="E" or char=="e":
-                square(int(1*gc),5)
+                square(int(1*gc),1)
             if char=="F" or char=="f":
-                square(int(2*gc),6)
+                square(int(2*gc),2)
             if char=="G" or char=="g":
-                sine(int(4*bc),7)
+                sine(int(4*bc),4)
             if char=="H" or char=="h":
-                square(int(3*gc),8)
+                square(int(3*gc),3)
             if char=="i" or char=="I":
-                square(int(4*gc),9)
+                square(int(4*gc),4)
             if char=="J" or char=="j":
-                sine(int(5*bc),10)
+                sine(int(5*bc),5)
             if char=="K" or char=="k":
-                triangle(int(2*rc),11)
+                triangle(int(2*rc),2)
             if char=="L" or char=="l":
-                square(int(5*gc),12)
+                square(int(5*gc),5)
             if char=="M" or char=="m":
-                triangle(int(3*rc),13)
+                triangle(int(3*rc),3)
             if char=="N" or char=="n":
-                triangle(int(4*rc),14)
+                triangle(int(4*rc),4)
             if char=="O" or char=="o":
-                sine(int(6*bc),15)
+                sine(int(6*bc),6)
             if char=="P" or char=="p":
-                sine(int(7*bc),16)
+                sine(int(7*bc),7)
             if char=="Q" or char=="q":
-                sine(int(8*bc),17)
+                sine(int(8*bc),8)
             if char=="R" or char=="r":
-                sine(int(9*bc),18)
+                sine(int(9*bc),9)
             if char=="S" or char=="s":
-                sine(int(10*bc),19)
+                sine(int(10*bc),10)
             if char=="T" or char=="t":
-                square(int(5*gc),20)
+                square(int(6*gc),6)
             if char=="U" or char=="u":
-                sine(int(11*bc),21)
+                sine(int(11*bc),11)
             if char=="V" or char=="v":
-                triangle(int(5*rc),22)
+                triangle(int(5*rc),5)
             if char=="W" or char=="w":
-                triangle(int(6*rc),23)
+                triangle(int(6*rc),6)
             if char=="X" or char=="x":
-                triangle(int(7*rc),24)
+                triangle(int(7*rc),7)
             if char=="Y" or char=="y":
-                triangle(int(8*rc),25)
+                triangle(int(8*rc),8)
             if char=="Z" or char=="z":
-                triangle(int(9*rc),26)
-    blue=int(blue/length)
-    red=int(red/length)
-    green=int(green/length)
-    RGB=[red,green,blue]
-    maxvalue=max(RGB)
-    R=int(255/maxvalue*red)
-    G=int(255/maxvalue*green)
-    B=int(255/maxvalue*blue)
-    maxlightness=length*26
-    lightness=int(100*numbersum/maxlightness)
-    redvalue=int(lightness*R/100)
-    greenvalue=int(lightness*G/100)
-    bluevalue=int(lightness*B/100)
-    hexcolor=rgb_hack((redvalue,greenvalue,bluevalue))
+                triangle(int(9*rc),9)
+    if bluelength>0:
+        blue=int(blue/bluelength)
+    else:
+        blue=0
+    if redlength>0:
+        red=int(red/redlength)
+    else:
+        red=0
+    if greenlength>0:
+        green=int(green/greenlength)
+    else:
+        green=0
+    hexcolor=rgb_hack((red,green,blue))
     ColorDisplayFrame.configure(bg=hexcolor)
     RedField.configure(state='normal')
     RedField.delete(1.0,2000.0)
-    RedField.insert(INSERT,redvalue)
+    RedField.insert(INSERT,red)
     RedField.configure(state='disabled')
     GreenField.configure(state='normal')
     GreenField.delete(1.0,2000.0)
-    GreenField.insert(INSERT,greenvalue)
+    GreenField.insert(INSERT,green)
     GreenField.configure(state='disabled')
     BlueField.configure(state='normal')
     BlueField.delete(1.0,2000.0)
-    BlueField.insert(INSERT,bluevalue)
+    BlueField.insert(INSERT,blue)
     BlueField.configure(state='disabled')
     HEXField.configure(state='normal')
     HEXField.delete(1.0,2000.0)
     HEXField.insert(INSERT,hexcolor)
     HEXField.configure(state='disabled')
+    redsum=0
+    greensum=0
+    bluesum=0
+    redlength=0
+    bluelength=0
+    greenlength=0
+
 
 #Generate color hotkey
 def GenerateColor_hotkey(event):
