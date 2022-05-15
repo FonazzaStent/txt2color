@@ -287,7 +287,7 @@ def CopyBluefn(event):
     pyperclip.copy(colorvalue)
 
 #Copy HEX
-def CopyHEXfn(event):
+def CopyHEXfn():
     colorvalue=HEXField.get(1.0,1.7)
     pyperclip.copy(colorvalue)
 
@@ -315,6 +315,11 @@ def QuitApp():
 def Quit_hotkey (event):
     QuitApp()
 
+#copyHEX_hotkey
+def CopyHEXfn_hotkey(event):
+        CopyHEXfn ()
+
+        
 
 menubar=tk.Menu(top, tearoff=0)
 top.configure(menu=menubar)
@@ -323,17 +328,19 @@ menubar.add_cascade(menu=sub_menu,compound="left", label="File")
 sub_menu.add_command(compound="left", label="Paste", command=paste, accelerator="Alt+P")
 sub_menu.add_command(compound="left",label="Clear", command=ClearTextBox, accelerator="Alt+C")
 sub_menu.add_command(compound="left",label="Generate Color", command=GenerateColor,accelerator="Alt+G")
+sub_menu.add_command(compound="left",label="Copy HEX value", command=CopyHEXfn,accelerator="Alt+H")
 sub_menu.add_command(compound="left",label="Quit", command=QuitApp, accelerator="Alt+Q")
 top.bind_all("<Alt-p>",paste_hotkey)
 top.bind_all("<Alt-c>",ClearTextBox_hotkey)
 top.bind_all("<Alt-g>",GenerateColor_hotkey)
 top.bind_all("<Alt-q>",Quit_hotkey)
+top.bind_all("<Alt-h>",CopyHEXfn_hotkey)
 menubar.bind_all("<Alt-f>",menubar.invoke(1))
 
 CopyRed.bind("<Button-1>",CopyRedfn)
 CopyGreen.bind("<Button-1>",CopyGreenfn)
 CopyBlue.bind("<Button-1>",CopyBluefn)
-CopyHEX.bind("<Button-1>",CopyHEXfn)
+CopyHEX.bind("<Button-1>",CopyHEXfn_hotkey)
 
 textbox.focus_set()
 
