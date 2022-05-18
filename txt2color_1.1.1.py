@@ -9,123 +9,190 @@ import pyperclip
 import math
 from tkinter import messagebox
 
-img=b'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAABuvAAAbrwFeGpEcAAAAB3RJTUUH5gQIDDglaXxNyAAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAASCSURBVFjDxZfLbxNXFMZ/c2fsscfxK7XzsPOAJC6BAHkRGpDaCnVFN62oFFVqpSB10Q3brtj2L0DKhmWXbLJHlboAKhVFbUOh0CaUQJqHkQMmTjy2x77ThcGxcWKPI7U90pU8d+6c+/k75zvnXsW2bZv/0TSnC20bHjxM8/ujDG63YGoiTDxmACClzW+LT3nyOIXfrzNx9ijhcNvhAMzPz3Pt2rW6hduls6wWTlaeFSRDnu9xK39jbQ1T3OzYe+cq4RlaAJGv8TE7O8vly5cbA7AsC02rJ2an2AtC7DGCIM8AhrZJ4VU7AlHlRKBYHai+jRofhUKhOQPFYhERDJLp6OCjkRFmL16kMxrll3u73Huw+zocNt9+dxfDnUN36xQMyRfffFDxIaXNx598jaqV+PHWT9yYu0nRtYtlWXUAxNsTOeDh6Chj587RNTLCQiqF7vUyORYhHHShKAqKotDl3SbS9gRd1wkeSeLWtcq7U2Mx+vq7UG0vpCNMjb1P6OEwxZSvOQOvdJ12j4fheByArWyWx8kkx+NxZj7rIZnMoao2t3+4hYIKqLjdJp9/+R6bG2l8bTrRjiAAv95eRpYkvYluVro3WLu7y27GxOf3HgwgJyUT0ShqVbyLUgLg0gQ9cQMpJR7dVfOdx+vmyEBHzVx2pxxzoQri41HS6ztYhWLjEHizWToDgcqzSwj6I5E66nRdrxn72ZHje4DaY0ECXTr+kK9xCL66dIkXuRx/JJO4VJXTPT0EvN465263e092irIvgNHpIdy6xsbTF/QNR3n39IeoqqgHYNs2K7srvCy8JKJH6Iv20h+NNiwg1f/6IACqKjh5ZoCTZwbK6rBKZP5KgrQxeiOoulYGcCd1h8XMYuXD6dA0k+2TDQFUMyCEaFrxSvki6/M/Y21ly+ACOvFLEwizZNZsDrDwaoGSXWrKQLMcqLbM8mZlc4DSdp7tR+to+/UiaUts2wbFGQMHhaDG51vZX2bFQhiawTHjWG3y+EfRROM+ZVlWZRSLxaYAfH0RFFEL1Hc0Ws6BC50XiG3HSOVTdHo6SfgTTR2aplmVbGrT9fo7bXR9Okp6cRWkTeBUHKM7XAagKiongida6uO5XK4lAADe7hDe7lC9DEtYrHKfHVKEiRNjGAXhGMB+3XNf29mB5eXy78FB8PvLAO5zk5esAJDiT7KkSXDecQiqE/JgGWTgxg14A3xhAWZmECaZyuZvbJ17SGRTBqpHU1te3tscIJ+HpSU0QX38VDQUFMchcHym22dO6BjEGKttIkw3BWCaZmXk8/nmAAYHwVXVQTUNBgfLOZDgPO30kiVNgCghultSgaMkDAZhZgaWlspsJBIQfi1DBYUIfUDfoWTopBQDEArB1NThjuWNVGAYxr9/L6ip4aVSDQOZTOa/BfC29HK5HPl83nkoGh3JnNjz58/r6sDa2tqhGGgJgJSS1dVVrl+/XiND0zSZm5vj2bNnSClbrQ/O7OrVq/bk5KStqmrDMT4+bl+5csWpW1txejtu9RLt5JDSUhI6ddiq/QMeSxpTDyo7FgAAAABJRU5ErkJggg=='
+#init
+def init():
+    global c
+    global rc
+    global bc
+    global gc
+    global blue
+    global red
+    global green
+    global lettern
+    global numbersum
+    global redsum
+    global greensum
+    global bluesum
+    global redlength
+    global greenlength
+    global bluelength
+    c=9.84
+    rc=28.44
+    bc=23.27
+    gc=42.5
+    blue=0
+    red=0
+    green=0
+    lettern=1
+    numbersum=0
+    redsum=0
+    greensum=0
+    bluesum=0
+    redlength=0
+    greenlength=0
+    bluelength=0  
 
-root= tk.Tk()
-top= root
-top.geometry("588x409+428+131")
-top.resizable(0,0)
-top.title("Text to Color")
-favicon=tk.PhotoImage(data=img) 
-root.wm_iconphoto(True, favicon)
+#Create app window
+def create_app_window():
+    global top
+    global root
+    img=b'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAABuvAAAbrwFeGpEcAAAAB3RJTUUH5gQIDDglaXxNyAAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAASCSURBVFjDxZfLbxNXFMZ/c2fsscfxK7XzsPOAJC6BAHkRGpDaCnVFN62oFFVqpSB10Q3brtj2L0DKhmWXbLJHlboAKhVFbUOh0CaUQJqHkQMmTjy2x77ThcGxcWKPI7U90pU8d+6c+/k75zvnXsW2bZv/0TSnC20bHjxM8/ujDG63YGoiTDxmACClzW+LT3nyOIXfrzNx9ijhcNvhAMzPz3Pt2rW6hduls6wWTlaeFSRDnu9xK39jbQ1T3OzYe+cq4RlaAJGv8TE7O8vly5cbA7AsC02rJ2an2AtC7DGCIM8AhrZJ4VU7AlHlRKBYHai+jRofhUKhOQPFYhERDJLp6OCjkRFmL16kMxrll3u73Huw+zocNt9+dxfDnUN36xQMyRfffFDxIaXNx598jaqV+PHWT9yYu0nRtYtlWXUAxNsTOeDh6Chj587RNTLCQiqF7vUyORYhHHShKAqKotDl3SbS9gRd1wkeSeLWtcq7U2Mx+vq7UG0vpCNMjb1P6OEwxZSvOQOvdJ12j4fheByArWyWx8kkx+NxZj7rIZnMoao2t3+4hYIKqLjdJp9/+R6bG2l8bTrRjiAAv95eRpYkvYluVro3WLu7y27GxOf3HgwgJyUT0ShqVbyLUgLg0gQ9cQMpJR7dVfOdx+vmyEBHzVx2pxxzoQri41HS6ztYhWLjEHizWToDgcqzSwj6I5E66nRdrxn72ZHje4DaY0ECXTr+kK9xCL66dIkXuRx/JJO4VJXTPT0EvN465263e092irIvgNHpIdy6xsbTF/QNR3n39IeoqqgHYNs2K7srvCy8JKJH6Iv20h+NNiwg1f/6IACqKjh5ZoCTZwbK6rBKZP5KgrQxeiOoulYGcCd1h8XMYuXD6dA0k+2TDQFUMyCEaFrxSvki6/M/Y21ly+ACOvFLEwizZNZsDrDwaoGSXWrKQLMcqLbM8mZlc4DSdp7tR+to+/UiaUts2wbFGQMHhaDG51vZX2bFQhiawTHjWG3y+EfRROM+ZVlWZRSLxaYAfH0RFFEL1Hc0Ws6BC50XiG3HSOVTdHo6SfgTTR2aplmVbGrT9fo7bXR9Okp6cRWkTeBUHKM7XAagKiongida6uO5XK4lAADe7hDe7lC9DEtYrHKfHVKEiRNjGAXhGMB+3XNf29mB5eXy78FB8PvLAO5zk5esAJDiT7KkSXDecQiqE/JgGWTgxg14A3xhAWZmECaZyuZvbJ17SGRTBqpHU1te3tscIJ+HpSU0QX38VDQUFMchcHym22dO6BjEGKttIkw3BWCaZmXk8/nmAAYHwVXVQTUNBgfLOZDgPO30kiVNgCghultSgaMkDAZhZgaWlspsJBIQfi1DBYUIfUDfoWTopBQDEArB1NThjuWNVGAYxr9/L6ip4aVSDQOZTOa/BfC29HK5HPl83nkoGh3JnNjz58/r6sDa2tqhGGgJgJSS1dVVrl+/XiND0zSZm5vj2bNnSClbrQ/O7OrVq/bk5KStqmrDMT4+bl+5csWpW1txejtu9RLt5JDSUhI6ddiq/QMeSxpTDyo7FgAAAABJRU5ErkJggg=='
+    root= tk.Tk()
+    top= root
+    top.geometry("588x409+428+131")
+    top.resizable(0,0)
+    top.title("Text to Color")
+    favicon=tk.PhotoImage(data=img) 
+    root.wm_iconphoto(True, favicon)
 
 #Textbox
-textbox = Text(top)
-textbox.place(relx=0.034, rely=0.049, relheight=0.888, relwidth=0.662)
-
-scroll_1=Scrollbar (top)
-scroll_1.place(relx=0.710, rely=0.030, relheight=0.930, anchor='n')
-textbox.configure(yscrollcommand=scroll_1.set)
-scroll_1.configure(command=textbox.yview)
+def create_textbox():
+    global textbox
+    textbox = Text(top)
+    textbox.place(relx=0.034, rely=0.049, relheight=0.888, relwidth=0.662)
+    scroll_1=Scrollbar (top)
+    scroll_1.place(relx=0.710, rely=0.030, relheight=0.930, anchor='n')
+    textbox.configure(yscrollcommand=scroll_1.set)
+    scroll_1.configure(command=textbox.yview)
+    textbox.focus_set()
+    textbox.bind("<Button-3>", context_menu)
 
 #ColorDisplayFrame
-ColorDisplayFrame= Frame(top)
-ColorDisplayFrame.place(relx=0.748, rely=0.051, relheight=0.269, relwidth=0.23)
-ColorDisplayFrame.configure(relief='groove')
-ColorDisplayFrame.configure(borderwidth="2")
-ColorDisplayFrame.configure(relief="groove")
+def create_color_display_frame():
+    global ColorDisplayFrame
+    ColorDisplayFrame= Frame(top)
+    ColorDisplayFrame.place(relx=0.748, rely=0.051, relheight=0.269, relwidth=0.23)
+    ColorDisplayFrame.configure(relief='groove')
+    ColorDisplayFrame.configure(borderwidth="2")
+    ColorDisplayFrame.configure(relief="groove")
 
-#RedLabel
-RedLabel=Label(top)
-RedLabel.place(relx=0.748, rely=0.359, height=20, width=25)
-RedLabel.configure(text='''Red''')
+#CreateLabels
+def create_labels_buttons():
+    #RedLabel
+    global RedLabel
+    RedLabel=Label(top)
+    RedLabel.place(relx=0.748, rely=0.359, height=20, width=25)
+    RedLabel.configure(text='''Red''')
 
-#RedField
-RedField=Text(top)
-RedField.place(relx=0.799, rely=0.367, relheight=0.061, relwidth=0.092)
-RedField.configure(state='disabled')
+    #RedField
+    global RedField
+    RedField=Text(top)
+    RedField.place(relx=0.799, rely=0.367, relheight=0.061, relwidth=0.092)
+    RedField.configure(state='disabled')
 
-#GreenLabel
-GreenLabel=Label(top)
-GreenLabel.place(relx=0.731, rely=0.438, height=20, width=35)
-GreenLabel.configure(text='''Green''')
+    #GreenLabel
+    global GreenLabel
+    GreenLabel=Label(top)
+    GreenLabel.place(relx=0.731, rely=0.438, height=20, width=35)
+    GreenLabel.configure(text='''Green''')
 
-#GreenField
-GreenField= Text(top)
-GreenField.place(relx=0.799, rely=0.44, relheight=0.061, relwidth=0.092)
-GreenField.configure(state='disabled')
+    #GreenField
+    global GreenField
+    GreenField= Text(top)
+    GreenField.place(relx=0.799, rely=0.44, relheight=0.061, relwidth=0.092)
+    GreenField.configure(state='disabled')
 
-#BlueLabel
-BlueLabel=Label(top)
-BlueLabel.place(relx=0.731, rely=0.513, height=22, width=34)
-BlueLabel.configure(text='''Blue''')
+    #BlueLabel
+    global BlueLabel
+    BlueLabel=Label(top)
+    BlueLabel.place(relx=0.731, rely=0.513, height=22, width=34)
+    BlueLabel.configure(text='''Blue''')
 
-#BlueField
-BlueField=Text(top)
-BlueField.place(relx=0.799, rely=0.513, relheight=0.061, relwidth=0.092)
-BlueField.configure(state='disabled')
+    #BlueField
+    global BlueField
+    BlueField=Text(top)
+    BlueField.place(relx=0.799, rely=0.513, relheight=0.061, relwidth=0.092)
+    BlueField.configure(state='disabled')
 
-#HEXLabel
-HEXLabel=Label(top)
-HEXLabel.place(relx=0.711, rely=0.616, height=12, width=34)
-HEXLabel.configure(text='''HEX''')
+    #HEXLabel
+    global HEXLabel
+    HEXLabel=Label(top)
+    HEXLabel.place(relx=0.711, rely=0.616, height=12, width=34)
+    HEXLabel.configure(text='''HEX''')
 
-#HEXField
-HEXField=Text(top)
-HEXField.place(relx=0.779, rely=0.592, relheight=0.061, relwidth=0.112)
-HEXField.configure(state='disabled')
+    #HEXField
+    global HEXField
+    HEXField=Text(top)
+    HEXField.place(relx=0.779, rely=0.592, relheight=0.061, relwidth=0.112)
+    HEXField.configure(state='disabled')
 
-#CopyRed
-CopyRed=Button(top)
-CopyRed.place (relx=0.901, rely=0.359, height=24, width=47)
-CopyRed.configure(text='''Copy''')
+    #CopyRed
+    global CopyRed
+    CopyRed=Button(top)
+    CopyRed.place (relx=0.901, rely=0.359, height=24, width=47)
+    CopyRed.configure(text='''Copy''')
 
-#CopyGreen
-CopyGreen=Button(top)
-CopyGreen.place(relx=0.901, rely=0.438, height=24, width=47)
-CopyGreen.configure(text='''Copy''')
+    #CopyGreen
+    global CopyGreen
+    CopyGreen=Button(top)
+    CopyGreen.place(relx=0.901, rely=0.438, height=24, width=47)
+    CopyGreen.configure(text='''Copy''')
 
-#CopyBlue
-CopyBlue=Button(top)
-CopyBlue.place(relx=0.901, rely=0.513, height=24, width=47)
-CopyBlue.configure(text='''Copy''')
+    #CopyBlue
+    global CopyBlue
+    CopyBlue=Button(top)
+    CopyBlue.place(relx=0.901, rely=0.513, height=24, width=47)
+    CopyBlue.configure(text='''Copy''')
 
-#CopyHEX
-CopyHEX=Button(top)
-CopyHEX.place(relx=0.901, rely=0.592, height=24, width=47)
-CopyHEX.configure(text='''Copy''')
+    #CopyHEX
+    global CopyHEX
+    CopyHEX=Button(top)
+    CopyHEX.place(relx=0.901, rely=0.592, height=24, width=47)
+    CopyHEX.configure(text='''Copy''')
+
+#Create menu
+def create_menu():
+    global menubar
+    global sub_menu
+    menubar=tk.Menu(top, tearoff=0)
+    top.configure(menu=menubar)
+    sub_menu=tk.Menu(top, tearoff=0)
+    menubar.add_cascade(menu=sub_menu,compound="left", label="File")
+    sub_menu.add_command(compound="left", label="Paste", command=paste, accelerator="Alt+P")
+    sub_menu.add_command(compound="left",label="Clear", command=ClearTextBox, accelerator="Alt+C")
+    sub_menu.add_command(compound="left",label="Generate Color", command=GenerateColor,accelerator="Alt+G")
+    sub_menu.add_command(compound="left",label="Copy HEX value", command=CopyHEXfn,accelerator="Alt+H")
+    sub_menu.add_command(compound="left",label="Quit", command=QuitApp, accelerator="Alt+Q")
+    top.bind_all("<Alt-p>",paste_hotkey)
+    top.bind_all("<Alt-c>",ClearTextBox_hotkey)
+    top.bind_all("<Alt-g>",GenerateColor_hotkey)
+    top.bind_all("<Alt-q>",Quit_hotkey)
+    top.bind_all("<Alt-h>",CopyHEXfn_hotkey)
+    menubar.bind_all("<Alt-f>",menubar.invoke(1))
+
+    CopyRed.bind("<Button-1>",CopyRedfn)
+    CopyGreen.bind("<Button-1>",CopyGreenfn)
+    CopyBlue.bind("<Button-1>",CopyBluefn)
+    CopyHEX.bind("<Button-1>",CopyHEXfn_hotkey)
 
 #PasteMenu
 def paste_text():
         textbox.event_generate(("<<Paste>>"))
 
-menu = Menu(root, tearoff = 0)
-menu.add_command(label="Paste", command=paste_text)
 
-def context_menu(event): 
+
+def context_menu(event):
+    menu = Menu(root, tearoff = 0)
+    menu.add_command(label="Paste", command=paste_text)
     try: 
         menu.tk_popup(event.x_root, event.y_root)
     finally: 
         menu.grab_release()
-textbox.bind("<Button-3>", context_menu)
+
 
 
 #GenerateColor
-c=9.84
-rc=28.44
-bc=23.27
-gc=42.5
-blue=0
-red=0
-green=0
-lettern=1
-numbersum=0
-redsum=0
-greensum=0
-bluesum=0
-redlength=0
-greenlength=0
-bluelength=0
+
 def sine(value, letternumber):
     global blue
     blue=blue+value
@@ -147,6 +214,7 @@ def square (value, letternumber):
     
 def rgb_hack(rgb):
     return "#%02x%02x%02x" % rgb
+
 def GenerateColor():
     global blue
     blue=0
@@ -320,29 +388,14 @@ def CopyHEXfn_hotkey(event):
         CopyHEXfn ()
 
         
+#main
+def main():
+    init()
+    create_app_window()
+    create_textbox()
+    create_color_display_frame()
+    create_labels_buttons()
+    create_menu()
 
-menubar=tk.Menu(top, tearoff=0)
-top.configure(menu=menubar)
-sub_menu=tk.Menu(top, tearoff=0)
-menubar.add_cascade(menu=sub_menu,compound="left", label="File")
-sub_menu.add_command(compound="left", label="Paste", command=paste, accelerator="Alt+P")
-sub_menu.add_command(compound="left",label="Clear", command=ClearTextBox, accelerator="Alt+C")
-sub_menu.add_command(compound="left",label="Generate Color", command=GenerateColor,accelerator="Alt+G")
-sub_menu.add_command(compound="left",label="Copy HEX value", command=CopyHEXfn,accelerator="Alt+H")
-sub_menu.add_command(compound="left",label="Quit", command=QuitApp, accelerator="Alt+Q")
-top.bind_all("<Alt-p>",paste_hotkey)
-top.bind_all("<Alt-c>",ClearTextBox_hotkey)
-top.bind_all("<Alt-g>",GenerateColor_hotkey)
-top.bind_all("<Alt-q>",Quit_hotkey)
-top.bind_all("<Alt-h>",CopyHEXfn_hotkey)
-menubar.bind_all("<Alt-f>",menubar.invoke(1))
-
-CopyRed.bind("<Button-1>",CopyRedfn)
-CopyGreen.bind("<Button-1>",CopyGreenfn)
-CopyBlue.bind("<Button-1>",CopyBluefn)
-CopyHEX.bind("<Button-1>",CopyHEXfn_hotkey)
-
-textbox.focus_set()
-
-
+main()
 root.mainloop()
