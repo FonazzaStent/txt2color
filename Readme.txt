@@ -12,3 +12,4 @@ pip install pyperclip
 
 New from previous version (1.1.1)
 - will now display three colors obtained from three different algorithms
+

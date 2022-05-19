@@ -349,6 +349,16 @@ def create_menu():
     CopyBlue.bind("<Button-1>",CopyBluefn)
     CopyHEX.bind("<Button-1>",CopyHEXfn_hotkey)
 
+    CopyRed2.bind("<Button-1>",CopyRedfn2)
+    CopyGreen2.bind("<Button-1>",CopyGreenfn2)
+    CopyBlue2.bind("<Button-1>",CopyBluefn2)
+    CopyHEX2.bind("<Button-1>",CopyHEXfn2_hotkey)
+
+    CopyRed3.bind("<Button-1>",CopyRedfn3)
+    CopyGreen3.bind("<Button-1>",CopyGreenfn3)
+    CopyBlue3.bind("<Button-1>",CopyBluefn3)
+    CopyHEX3.bind("<Button-1>",CopyHEXfn3_hotkey)
+
 #PasteMenu
 def paste_text():
         textbox.event_generate(("<<Paste>>"))
@@ -751,14 +761,38 @@ def CopyRedfn(event):
     colorvalue=RedField.get(1.0,1.3)
     pyperclip.copy(colorvalue)
 
+def CopyRedfn2(event):
+    colorvalue=RedField2.get(1.0,1.3)
+    pyperclip.copy(colorvalue)
+
+def CopyRedfn3(event):
+    colorvalue=RedField3.get(1.0,1.3)
+    pyperclip.copy(colorvalue)
+
 #Copy Green
 def CopyGreenfn(event):
     colorvalue=GreenField.get(1.0,1.3)
     pyperclip.copy(colorvalue)
 
+def CopyGreenfn2(event):
+    colorvalue=GreenField2.get(1.0,1.3)
+    pyperclip.copy(colorvalue)
+
+def CopyGreenfn3(event):
+    colorvalue=GreenField3.get(1.0,1.3)
+    pyperclip.copy(colorvalue)
+
 #Copy Blue
 def CopyBluefn(event):
     colorvalue=BlueField.get(1.0,1.3)
+    pyperclip.copy(colorvalue)
+
+def CopyBluefn2(event):
+    colorvalue=BlueField2.get(1.0,1.3)
+    pyperclip.copy(colorvalue)
+
+def CopyBluefn3(event):
+    colorvalue=BlueField3.get(1.0,1.3)
     pyperclip.copy(colorvalue)
 
 #Copy HEX
