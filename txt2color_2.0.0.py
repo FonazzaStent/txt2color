@@ -382,18 +382,24 @@ def sine(value, letternumber):
     blue=blue+value
     global bluelength
     bluelength=bluelength+1
+    global bluesum
+    bluesum=bluesum+letternumber
 
 def triangle (value, letternumber):
     global red
     red=red+value
     global redlength
     redlength=redlength+1
+    global redsum
+    redsum=redsum+letternumber
 
 def square (value, letternumber):
     global green
     green=green+value
     global greenlength
     greenlength= greenlength+1
+    global greensum
+    greensum=greensum+letternumber
 
 def sine2(value, letternumber):
     global blue
@@ -507,40 +513,47 @@ def GenerateColor():
                 triangle(int(9*rc),9)
     if bluelength>0:
         blue=int(blue/bluelength)
+        bluevalue=int(blue*bluelength)
     else:
         blue=0
+        bluevalue=0
     if redlength>0:
         red=int(red/redlength)
+        redvalue=int(red*redlength)
     else:
         red=0
+        redvalue=0
     if greenlength>0:
         green=int(green/greenlength)
+        greenvalue=int(green*greenlength)
     else:
         green=0
-    hexcolor=rgb_hack((red,green,blue))
+        greenvalue=0
+    RGB=[redvalue,greenvalue,bluevalue]
+    RGB2=[red,green,blue]
+    maxvalue=max(RGB)
+    maxvalue2=max(RGB2)
+    R=int(maxvalue2/maxvalue*redvalue)
+    G=int(maxvalue2/maxvalue*greenvalue)
+    B=int(maxvalue2/maxvalue*bluevalue)
+    hexcolor=rgb_hack((R,G,B))
     ColorDisplayFrame.configure(bg=hexcolor)
     RedField.configure(state='normal')
     RedField.delete(1.0,2000.0)
-    RedField.insert(INSERT,red)
+    RedField.insert(INSERT,R)
     RedField.configure(state='disabled')
     GreenField.configure(state='normal')
     GreenField.delete(1.0,2000.0)
-    GreenField.insert(INSERT,green)
+    GreenField.insert(INSERT,G)
     GreenField.configure(state='disabled')
     BlueField.configure(state='normal')
     BlueField.delete(1.0,2000.0)
-    BlueField.insert(INSERT,blue)
+    BlueField.insert(INSERT,B)
     BlueField.configure(state='disabled')
     HEXField.configure(state='normal')
     HEXField.delete(1.0,2000.0)
     HEXField.insert(INSERT,hexcolor)
     HEXField.configure(state='disabled')
-    redsum=0
-    greensum=0
-    bluesum=0
-    redlength=0
-    bluelength=0
-    greenlength=0
 
 
 #algorithm 2
@@ -566,68 +579,102 @@ def GenerateColor():
             if char=="A" or char=="a":
                 triangle2(int(1*rc), 1)
             if char=="B" or char=="b":
-                sine2 (int(1*bc), 2)
+                sine2 (int(1*bc), 1)
             if char=="C" or char=="c":
-                sine2(int(2*bc), 3)
+                sine2(int(2*bc), 2)
             if char=="D" or char=="d":
-                sine2(int(3*bc),4)
+                sine2(int(3*bc),3)
             if char=="E" or char=="e":
-                square2(int(1*gc),5)
+                square2(int(1*gc),1)
             if char=="F" or char=="f":
-                square2(int(2*gc),6)
+                square2(int(2*gc),2)
             if char=="G" or char=="g":
-                sine2(int(4*bc),7)
+                sine2(int(4*bc),4)
             if char=="H" or char=="h":
-                square2(int(3*gc),8)
+                square2(int(3*gc),3)
             if char=="i" or char=="I":
-                square2(int(4*gc),9)
+                square2(int(4*gc),4)
             if char=="J" or char=="j":
-                sine2(int(5*bc),10)
+                sine2(int(5*bc),5)
             if char=="K" or char=="k":
-                triangle2(int(2*rc),11)
+                triangle2(int(2*rc),2)
             if char=="L" or char=="l":
-                square2(int(5*gc),12)
+                square2(int(5*gc),5)
             if char=="M" or char=="m":
-                triangle2(int(3*rc),13)
+                triangle2(int(3*rc),3)
             if char=="N" or char=="n":
-                triangle2(int(4*rc),14)
+                triangle2(int(4*rc),4)
             if char=="O" or char=="o":
-                sine2(int(6*bc),15)
+                sine2(int(6*bc),6)
             if char=="P" or char=="p":
-                sine2(int(7*bc),16)
+                sine2(int(7*bc),7)
             if char=="Q" or char=="q":
-                sine2(int(8*bc),17)
+                sine2(int(8*bc),8)
             if char=="R" or char=="r":
-                sine2(int(9*bc),18)
+                sine2(int(9*bc),9)
             if char=="S" or char=="s":
-                sine2(int(10*bc),19)
+                sine2(int(10*bc),10)
             if char=="T" or char=="t":
-                square2(int(5*gc),20)
+                square2(int(5*gc),6)
             if char=="U" or char=="u":
-                sine2(int(11*bc),21)
+                sine2(int(11*bc),11)
             if char=="V" or char=="v":
-                triangle2(int(5*rc),22)
+                triangle2(int(5*rc),5)
             if char=="W" or char=="w":
-                triangle2(int(6*rc),23)
+                triangle2(int(6*rc),6)
             if char=="X" or char=="x":
-                triangle2(int(7*rc),24)
+                triangle2(int(7*rc),7)
             if char=="Y" or char=="y":
-                triangle2(int(8*rc),25)
+                triangle2(int(8*rc),8)
             if char=="Z" or char=="z":
-                triangle2(int(9*rc),26)
-    blue=int(blue/length)
-    red=int(red/length)
-    green=int(green/length)
+                triangle2(int(9*rc),9)
+    if bluelength>0:
+        blue=int(blue/bluelength)
+        blue=int(blue*bluelength)
+    else:
+        blue=0
+    if redlength>0:
+        red=int(red/redlength)
+        red=int(red*redlength)
+    else:
+        red=0
+    if greenlength>0:
+        green=int(green/greenlength)
+        green=int(green*greenlength)
+    else:
+        green=0
     RGB=[red,green,blue]
     maxvalue=max(RGB)
-    R=int(255/maxvalue*red)
-    G=int(255/maxvalue*green)
-    B=int(255/maxvalue*blue)
-    maxlightness=length*26
-    lightness=int(100*numbersum/maxlightness)
-    redvalue=int(lightness*R/100)
-    greenvalue=int(lightness*G/100)
-    bluevalue=int(lightness*B/100)
+    if red>0:
+        R=int(255/maxvalue*red)
+    else:
+        R=0
+    if green>0:
+        G=int(255/maxvalue*green)
+    else:
+        G=0
+    if blue>0:
+        B=int(255/maxvalue*blue)
+    else:
+        B=0
+    maxredlightness=redlength*9
+    maxgreenlightness=greenlength*6
+    maxbluelightness=bluelength*11
+    if maxredlightness>0:
+        redlightness=int(100*redsum/maxredlightness)
+    else:
+        redlightness=0
+    if maxgreenlightness>0:
+        greenlightness=int(100*greensum/maxgreenlightness)
+    else:
+        greenlightness=0
+    if maxbluelightness>0:
+        bluelightness=int(100*bluesum/maxbluelightness)
+    else:
+        bluelightness=0
+    redvalue=int(redlightness*R/100)
+    greenvalue=int(greenlightness*G/100)
+    bluevalue=int(bluelightness*B/100)
     hexcolor=rgb_hack((redvalue,greenvalue,bluevalue))
     ColorDisplayFrame2.configure(bg=hexcolor)
     RedField2.configure(state='normal')
@@ -669,66 +716,78 @@ def GenerateColor():
         asciicode=ord(char)
         if (asciicode>64 and asciicode<91) or (asciicode>96 and asciicode<123):
             if char=="A" or char=="a":
-                triangle2(int(1*rc), 1)
+                triangle(int(1*rc), 1)
             if char=="B" or char=="b":
-                sine2 (int(1*bc), 2)
+                sine (int(1*bc), 2)
             if char=="C" or char=="c":
-                sine2(int(2*bc), 3)
+                sine(int(2*bc), 3)
             if char=="D" or char=="d":
-                sine2(int(3*bc),4)
+                sine(int(3*bc),4)
             if char=="E" or char=="e":
-                square2(int(1*gc),5)
+                square(int(1*gc),5)
             if char=="F" or char=="f":
-                square2(int(2*gc),6)
+                square(int(2*gc),6)
             if char=="G" or char=="g":
-                sine2(int(4*bc),7)
+                sine(int(4*bc),7)
             if char=="H" or char=="h":
-                square2(int(3*gc),8)
+                square(int(3*gc),8)
             if char=="i" or char=="I":
-                square2(int(4*gc),9)
+                square(int(4*gc),9)
             if char=="J" or char=="j":
-                sine2(int(5*bc),10)
+                sine(int(5*bc),10)
             if char=="K" or char=="k":
-                triangle2(int(2*rc),11)
+                triangle(int(2*rc),11)
             if char=="L" or char=="l":
-                square2(int(5*gc),12)
+                square(int(5*gc),12)
             if char=="M" or char=="m":
-                triangle2(int(3*rc),13)
+                triangle(int(3*rc),13)
             if char=="N" or char=="n":
-                triangle2(int(4*rc),14)
+                triangle(int(4*rc),14)
             if char=="O" or char=="o":
-                sine2(int(6*bc),15)
+                sine(int(6*bc),15)
             if char=="P" or char=="p":
-                sine2(int(7*bc),16)
+                sine(int(7*bc),16)
             if char=="Q" or char=="q":
-                sine2(int(8*bc),17)
+                sine(int(8*bc),17)
             if char=="R" or char=="r":
-                sine2(int(9*bc),18)
+                sine(int(9*bc),18)
             if char=="S" or char=="s":
-                sine2(int(10*bc),19)
+                sine(int(10*bc),19)
             if char=="T" or char=="t":
-                square2(int(5*gc),20)
+                square(int(5*gc),20)
             if char=="U" or char=="u":
-                sine2(int(11*bc),21)
+                sine(int(11*bc),21)
             if char=="V" or char=="v":
-                triangle2(int(5*rc),22)
+                triangle(int(5*rc),22)
             if char=="W" or char=="w":
-                triangle2(int(6*rc),23)
+                triangle(int(6*rc),23)
             if char=="X" or char=="x":
-                triangle2(int(7*rc),24)
+                triangle(int(7*rc),24)
             if char=="Y" or char=="y":
-                triangle2(int(8*rc),25)
+                triangle(int(8*rc),25)
             if char=="Z" or char=="z":
-                triangle2(int(9*rc),26)
-    blue=int(blue/length)
-    red=int(red/length)
-    green=int(green/length)
+                triangle(int(9*rc),26)
+
+    if bluelength>0:
+        blue=int(blue/bluelength)
+        blue=int(blue*bluelength)
+    else:
+        blue=0
+    if redlength>0:
+        red=int(red/redlength)
+        red=int(red*redlength)
+    else:
+        red=0
+    if greenlength>0:
+        green=int(green/greenlength)
+        green=int(green*greenlength)
+    else:
+        green=0
     RGB=[red,green,blue]
     maxvalue=max(RGB)
     R=int(255/maxvalue*red)
     G=int(255/maxvalue*green)
     B=int(255/maxvalue*blue)
-    maxlightness=length*26
     hexcolor=rgb_hack((R,G,B))
     ColorDisplayFrame3.configure(bg=hexcolor)
     RedField3.configure(state='normal')
@@ -747,6 +806,12 @@ def GenerateColor():
     HEXField3.delete(1.0,2000.0)
     HEXField3.insert(INSERT,hexcolor)
     HEXField3.configure(state='disabled')
+    redsum=0
+    greensum=0
+    bluesum=0
+    redlength=0
+    bluelength=0
+    greenlength=0
 
 #Generate color hotkey
 def GenerateColor_hotkey(event):
