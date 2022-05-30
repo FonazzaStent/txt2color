@@ -165,6 +165,7 @@ def create_labels_buttons():
     HEXField=Text(top)
     HEXField.place(x=590, y=140, height=30, width=70)
     HEXField.configure(state='disabled')
+    HEXField.bind("<Button-3>", copy_HEX)
 
     #CopyHEX
     global CopyHEX
@@ -239,6 +240,7 @@ def create_labels_buttons():
     HEXField2=Text(top)
     HEXField2.place(x=590, y=300, height=30, width=70)
     HEXField2.configure(state='disabled')
+    HEXField2.bind("<Button-3>", copy_HEX2)
 
     #CopyHEX
     global CopyHEX2
@@ -313,6 +315,7 @@ def create_labels_buttons():
     HEXField3=Text(top)
     HEXField3.place(x=590, y=460, height=30, width=70)
     HEXField3.configure(state='disabled')
+    HEXField3.bind("<Button-3>", copy_HEX3)
 
     #CopyHEX
     global CopyHEX3
@@ -361,9 +364,8 @@ def create_menu():
 
 #PasteMenu
 def paste_text():
-        textbox.event_generate(("<<Paste>>"))
-
-
+    textbox
+    textbox.event_generate(("<<Paste>>"))
 
 def context_menu(event):
     menu = Menu(root, tearoff = 0)
@@ -373,7 +375,33 @@ def context_menu(event):
     finally: 
         menu.grab_release()
 
+#CopyMenu
+def copy_HEX(event):
+    global fieldvalue
+    fieldvalue=HEXField.get(1.0,1.7)
+    copy_context_menu(event)
 
+def copy_HEX2(event):
+    global fieldvalue
+    fieldvalue=HEXField2.get(1.0,1.7)
+    copy_context_menu(event)
+
+def copy_HEX3(event):
+    global fieldvalue
+    fieldvalue=HEXField3.get(1.0,1.7)
+    copy_context_menu(event)
+
+def copy_text():
+    global fieldvalue
+    pyperclip.copy(fieldvalue)
+
+def copy_context_menu(event):
+    menu = Menu(root, tearoff = 0)
+    menu.add_command(label="Copy", command=copy_text)
+    try: 
+        menu.tk_popup(event.x_root, event.y_root)
+    finally: 
+        menu.grab_release()
 
 #GenerateColor
 
