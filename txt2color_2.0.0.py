@@ -173,7 +173,7 @@ def create_labels_buttons():
     CopyHEX.place(x=670, y=143, height=24, width=47)
     CopyHEX.configure(text='''Copy''')
 
-#algorithm 2 (pop)
+#algorithm 2 (complex)
 
     #RedLabel
     global RedLabel2
@@ -248,7 +248,7 @@ def create_labels_buttons():
     CopyHEX2.place(x=670, y=303, height=24, width=47)
     CopyHEX2.configure(text='''Copy''')
 
-#algorithm 3
+#algorithm 3 (pop)
     
     #RedLabel
     global RedLabel3
